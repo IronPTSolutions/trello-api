@@ -21,7 +21,7 @@ module.exports.get = (req, res, next) => {
 }
 
 module.exports.update = (req, res, next) => {
-  Card.findByIdAndUpdate(req.params.id, req.body)
+  Card.findByIdAndUpdate(req.params.id, req.body, { new: true })
     .then(card => {
       if (!card) {
         throw createError(404, 'card not found');

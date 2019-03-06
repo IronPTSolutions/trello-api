@@ -5,7 +5,7 @@ const Card = require('../models/card.model');
 const columnSchema = new mongoose.Schema({
   title: {
     type: String,
-    required: [true, 'The phone brand is required']
+    required: true
   },
   position: {
     type: Number,

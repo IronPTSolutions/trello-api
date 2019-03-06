@@ -5,7 +5,7 @@ const LABELS = ['Learning Unit', 'Lab', 'Example', 'Extra', 'Kata'];
 const cardSchema = new mongoose.Schema({
   title: {
     type: String,
-    required: [true, 'The phone brand is required'],
+    required: true,
     maxlength: 100
   },
   description: {
@@ -13,8 +13,7 @@ const cardSchema = new mongoose.Schema({
   },
   position: {
     type: Number,
-    required: true,
-    unique: true
+    required: true
   },
   imageURl: {
     type: String,
@@ -39,6 +38,8 @@ const cardSchema = new mongoose.Schema({
       }
     }
   });
+
+cardSchema.index({ position: 1, column: 1 }, { unique: true });
 
 const Card = mongoose.model('Card', cardSchema);
 

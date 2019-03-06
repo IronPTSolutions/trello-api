@@ -1,4 +1,5 @@
 const Column = require('../models/column.model');
+const Card = require('../models/card.model');
 
 const createError = require('http-errors');
 
@@ -23,7 +24,7 @@ module.exports.get = (req, res, next) => {
 }
 
 module.exports.update = (req, res, next) => {
-  Column.findByIdAndUpdate(req.params.id, req.body)
+  Column.findByIdAndUpdate(req.params.id, req.body, { new: true })
     .then(column => {
       if (!column) {
         throw createError(404, 'column not found');
@@ -48,7 +49,9 @@ module.exports.delete = (req, res, next) => {
       if (!column) {
         throw createError(404, 'Column not found');
       } else {
-        res.status(204).json();
+        Card.deleteMany({ column: column._id })
+          .then(() => res.status(204).json())
+          .catch(next);
       }
     })
     .catch(next);
