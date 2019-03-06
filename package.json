@@ -1,0 +1,23 @@
+{
+  "name": "trello-api",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "DEBUG=ex-social-auth:* nodemon -e hbs,js --inspect ./bin/www",
+    "start": "node ./bin/www"
+  },
+  "dependencies": {
+    "connect-mongo": "^2.0.3",
+    "cookie-parser": "~1.4.3",
+    "debug": "~2.6.9",
+    "dotenv": "^6.0.0",
+    "express": "~4.16.0",
+    "express-session": "^1.15.6",
+    "http-errors": "~1.6.2",
+    "mongoose": "^5.2.2",
+    "morgan": "~1.9.0"
+  },
+  "devDependencies": {
+    "nodemon": "^1.17.5"
+  }
+}
