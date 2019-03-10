@@ -23,7 +23,7 @@ const columnSchema = new mongoose.Schema({
         return ret;
       }
     }
-});
+  });
 
 columnSchema.virtual('cards', {
   ref: Card.modelName,

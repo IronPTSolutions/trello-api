@@ -44,15 +44,14 @@ module.exports.create = (req, res, next) => {
 }
 
 module.exports.delete = (req, res, next) => {
-  Column.findByIdAndDelete(req.params.id)
-    .then(column => {
-      if (!column) {
-        throw createError(404, 'Column not found');
-      } else {
-        Card.deleteMany({ column: column._id })
-          .then(() => res.status(204).json())
-          .catch(next);
-      }
-    })
-    .catch(next);
+  Promise.all([
+    Column.findByIdAndDelete(req.params.id),
+    Card.deleteMany({ column: req.params.id })
+  ]).then(([column, cards]) => {
+    if (!column) {
+      throw createError(404, 'Column not found')
+    } else {
+      res.status(204).json()
+    }
+  }).catch(next);
 }

@@ -8,16 +8,12 @@ const cardSchema = new mongoose.Schema({
     required: true,
     maxlength: 100
   },
-  description: {
-    type: String,
-  },
+  description: String,
   position: {
     type: Number,
     required: true
   },
-  imageURl: {
-    type: String,
-  },
+  imageURL: String,
   label: {
     type: String,
     enum: LABELS
