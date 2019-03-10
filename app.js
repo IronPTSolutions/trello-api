@@ -8,20 +8,18 @@ const mongoose = require('mongoose');
 
 const columnRoutes = require('./routes/columns.routes');
 const cardsRoutes = require('./routes/cards.routes');
-const cors = require('cors');
 
 require('./configs/db.config');
-
 const session = require('./configs/session.config');
+const cors = require('./configs/cors.config');
 
 const app = express();
-
-app.use(cors());
 
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
+app.use(cors);
 
 app.use(session);
 
