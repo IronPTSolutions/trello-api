@@ -9,10 +9,10 @@ module.exports = cors({
   origin: (origin, next) => {
     const allowed = !origin || allowedOrigins.indexOf(origin) !== -1;
     if (allowed) {
-      next();
+      next(null, allowed);
     } else {
       next(createError(401, 'Not allowed by CORS'));
     }
   },
   credentials: true
-})
+});

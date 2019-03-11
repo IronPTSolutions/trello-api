@@ -35,6 +35,11 @@ module.exports.update = (req, res, next) => {
 module.exports.create = (req, res, next) => {
   const card = new Card(req.body);
 
+  console.log(req.file);
+  if (req.file) {
+    card.imageURL = req.file.secure_url;
+  }
+
   card.save()
     .then(card => res.status(201).json(card))
     .catch(next);
