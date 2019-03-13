@@ -33,3 +33,8 @@ module.exports.authenticate = (req, res, next) => {
     }
   })(req, res, next);
 }
+
+module.exports.logout = (req, res, next) => {
+  req.logout();
+  res.status(204).json();
+}
